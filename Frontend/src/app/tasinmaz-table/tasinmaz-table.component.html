@@ -1,0 +1,92 @@
+<div *ngIf="isAuthenticated">
+<h3>{{ title }}</h3>
+<br /><br />
+<div class="r">
+  <input
+    type="text"
+    placeholder="Taşınmaz ara"
+    [(ngModel)]="kullanicisearch"
+    
+  />
+  <button (click)="searchChange()">ara</button>
+<br><br>
+<a routerLink="tasinmazEkle" type="button" class="btn btn-primary">Yeni taşınmaz</a>
+<br><br>
+<table class="table" *ngIf="tasinmazlar.length >= 1">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">İl</th>
+      <th scope="col">İlçe</th>
+      <th scope="col">Mahalle</th>
+      <th scope="col">Ada</th>
+      <th scope="col">Parsel</th>
+      <th scope="col">Nitelik</th>
+      <th scope="col">Adres</th>
+      <th scope="col">İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tasinmaz of tasinmazlar">
+      <td>
+        {{ tasinmaz.tasinmazId }}
+      </td>
+      <td>
+        {{ tasinmaz.tasinmazIl }}
+      </td>
+      <td>
+        {{ tasinmaz.tasinmazIlce }}
+      </td>
+      <td>
+        {{ tasinmaz.tasinmazMahalle }}
+      </td>
+      <td>
+        {{ tasinmaz.ada }}
+      </td>
+      <td>
+        {{ tasinmaz.parsel }}
+      </td>
+      <td>
+        {{ tasinmaz.nitelik }}
+      </td>
+      <td>
+        {{ tasinmaz.adres }}
+      </td>
+      <table>
+        <tr>
+          <td style="background-color: greenyellow">
+            <a routerLink="guncelle/{{tasinmaz.tasinmazId}}" class="btn" type="button"
+              >Güncelle</a
+            >
+          </td>
+          <td style="background-color: red">
+            <a (click)="silTasinmaz(tasinmaz.tasinmazId)" type="button">Sil</a>
+          </td>
+          <td style="background-color: orange">
+            <a (click)="raporlaTasinmaz(tasinmaz)" type="button">Raporla</a>
+          </td>
+          <td style="background-color: orange">
+            <a (click)="printtest()" type="button">Raporla</a>
+          </td>
+        </tr>
+      </table>
+    </tr>
+  </tbody>
+</table>
+</div>
+<a 
+    (click)="previousPage()"
+    type="button"
+    class="btn btn-primary"
+    >prev</a
+  >
+<a *ngIf="tasinmazlar.length >= 1"
+    (click)="nextPage()"
+    type="button"
+    class="btn btn-primary"
+    >next</a>
+
+   <select #Sayfa (change) = "changePageNumber(Sayfa.value)">
+     <option *ngFor="let i of pageNumbers" [value] = "i">{{i}}</option>
+   </select>
+   

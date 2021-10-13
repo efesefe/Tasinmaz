@@ -1,0 +1,106 @@
+<div *ngIf="isAuthenticated">
+  <h3>{{ title }}</h3>
+  <br /><br />
+
+  <div class="r">
+    <input
+      type="text"
+      placeholder="Kullanıcı ara"
+      [(ngModel)]="kullanicisearch"
+    />
+    <button (click)="changedSearch()">ara</button>
+  </div>
+  <br><br>
+  <a
+    routerLink="kullaniciekle"
+    class="btn btn-primary active"
+    data-bs-toggle="button"
+    aria-pressed="true"
+    >Kullanıcı ekle</a
+  >
+  <table class="table" *ngIf="kullanicilar.length >= 1">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">İsim</th>
+        <th scope="col">Soyisim</th>
+        <th scope="col">Email</th>
+        <th scope="col">Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let kullanici of kullanicilar
+        "
+      >
+        <td>
+          {{ kullanici.KullaniciID }}
+        </td>
+        <td>
+          {{ kullanici.isim }}
+        </td>
+        <td>
+          {{ kullanici.soyisim }}
+        </td>
+        <td>
+          {{ kullanici.email }}
+        </td>
+        <td>
+          <p *ngIf="kullanici.role > 0; else second">Normal kullanici</p>
+          <ng-template #second>
+            <p>Admin</p>
+          </ng-template>
+        </td>
+        <table>
+          <tr>
+            <td style="background-color: greenyellow">
+              <a
+                routerLink="guncelle/{{ kullanici.KullaniciID }}"
+                class="btn"
+                type="button"
+                >Güncelle</a
+              >
+            </td>
+            <td style="background-color: red">
+              <a (click)="silKullanici(kullanici.kullaniciID)" type="button"
+                >Sil</a
+              >
+            </td>
+
+            <td style="background-color: orange">
+              <a
+                (click)="
+                  kullaniciRapor(
+                    kullanici,
+                    kullanici.role,
+                    kullanici.kullaniciID
+                  )
+                "
+                type="button"
+                >Raporla</a
+              >
+            </td>
+          </tr>
+        </table>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <button onclick="previousPage()">prev</button> -->
+  <!-- <button onclick="nextPage()">next</button> -->
+  
+</div>
+<div class="alert alert-danger" *ngIf="kullanicilar.length < 1">yok ki senin kullanıcın yok</div>
+<a 
+    (click)="previousPage()"
+    type="button"
+    class="btn btn-primary"
+    >prev</a
+  >
+  <a *ngIf="kullanicilar.length >= 1"
+    (click)="nextPage()"
+    type="button"
+    class="btn btn-primary"
+    >next</a
+  >
+<!-- <pagination-controls (page-Change) = "p = $event"></pagination-controls> -->

@@ -1,0 +1,19 @@
+{
+  "FilePath": "c:\\Users\\user\\Desktop\\OdakGIS\\tasinmaz_V3\\tasinmaz_v3.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "3.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 800
+  },
+  "RootNamespace": "tasinmaz_v3",
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}

@@ -1,0 +1,191 @@
+<form
+  [formGroup]="tasinmazGuncelleForm"
+  (ngSubmit)="updateTasinmaz()"
+  class="form-group"
+  *ngIf="tasinmazGuncelleForm"
+>
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">ID</span>
+  <input
+    type="number"
+    class="form-control"
+    placeholder="ID"
+    aria-label="Username"
+    aria-describedby="basic-addon1"
+    formControlName ="tasinmazID"
+    disabled
+  />
+</div>
+  <div class="col g-3 align-items-center">
+    <select
+      class="select-option"
+      #mySelect
+      (change)="ilsec(mySelect.value)"
+      formControlName ="ilID"
+      *ngIf="iller && ilId"
+    >
+    <option value="">İl seçiniz</option>
+      <option
+        class="option"
+        *ngFor="let il of iller"
+        [value]="il.ilID"
+      >
+        {{ il.ilName }}
+      </option>
+    </select>
+  </div>
+  <!-- <div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get('ilID').hasError('required') &&
+    tasinmazGuncelleForm.get('ilID').dirty
+    "
+  > 
+    İl alanı zorunludur
+  </div>-->
+  <div class="col g-3 align-items-center">
+    <select
+      class="select-option"
+      #mySelect1
+      (change)="ilcesec(mySelect1.value)"
+      formControlName ="ilceID"
+    >
+    <option value="">İlçe seçiniz</option>
+      <option
+        class="option"
+        *ngFor="let ilce of ilceler"
+        [value]="ilce.ilceID"
+      >
+        {{ ilce.ilceName }}
+      </option>
+    </select>
+  </div>
+  <!-- <div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get('ilceID').hasError('required') &&
+    tasinmazGuncelleForm.get('ilceID').dirty
+    "
+  >
+    İlçe alanı zorunludur
+  </div> -->
+  <div class="col g-3 align-items-center">
+  <select
+    class="select-option"
+    #mySelect2
+    formControlName="mahalleID"
+  >
+  <option value="">Mahalle seçiniz</option>
+    <option
+      class="option"
+      *ngFor="let mahalle of mahalleler"
+      [ngValue]=mahalle.mahalleID
+      
+    >
+      {{ mahalle.mahalleName }}
+    </option>
+  </select>
+</div>
+<div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get(['mahalleID']).hasError('required') &&
+    tasinmazGuncelleForm.get(['mahalleID']).dirty
+    "
+  >
+    Mahalle alanı zorunludur
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Ada</span>
+    <input
+      formControlName="ada"
+      type="number"
+      class="form-control"
+      placeholder="Ada"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get(['ada']).hasError(['ada']) &&
+    tasinmazGuncelleForm.get(['ada']).dirty
+    "
+  > 
+    Ada alanı zorunludur
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Parsel</span>
+    <input
+      formControlName="parsel"
+      type="number"
+      class="form-control"
+      placeholder="Parsel"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <!-- <div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get('parsel').hasError('required') &&
+    tasinmazGuncelleForm.get('parsel').dirty
+    "
+  >
+    Parsel alanı zorunludur
+  </div> -->
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Nitelik</span>
+    <input
+      formControlName="nitelik"
+      type="text"
+      class="form-control"
+      placeholder="Nitelik"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <!-- <div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get('nitelik').hasError('required') &&
+    tasinmazGuncelleForm.get('nitelik').dirty
+    "
+  >
+    Nitelik alanı zorunludur
+  </div> -->
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Adres</span>
+    <input
+      formControlName="adres"
+      type="text"
+      class="form-control"
+      placeholder="Adres"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <!-- <div
+    class="alert alert-danger"
+    *ngIf="
+    tasinmazGuncelleForm.get('adres').hasError('required') &&
+    tasinmazGuncelleForm.get('adres').dirty
+    "
+  >
+    Adres alanı zorunludur
+  </div> -->
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+  >
+    Güncelle
+  </button>
+</form>
+
+<!------------------------------------------------------------------------------------------->

@@ -1,0 +1,232 @@
+<form
+  [formGroup]="tasinmazAddForm"
+  (ngSubmit)="addTasinmaz()"
+  class="form-group"
+  (change) = "rev()"
+>
+  <div class="col g-3 align-items-center">
+    <select
+      class="select-option"
+      #mySelect
+      (change)="onOptionsSelected(mySelect.value)"
+      [ngModel]="ilid"
+    >
+      <option disabled>İl seçiniz</option>
+      <option
+        class="option"
+        *ngFor="let il of iller"
+        [value]="il.ilID"
+      >
+        {{ il.ilName }}
+      </option>
+    </select>
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+        ilid == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+  <div class="col g-3 align-items-center">
+    <select
+      class="select-option"
+      #mySelect1
+      (change)="ilceSecildi(mySelect1.value)"
+      [ngModel] = ilceid
+    >
+      <option disabled>İlçe seçiniz</option>
+      <option
+        class="option"
+        *ngFor="let ilce of ilceler"
+        [value]="ilce.ilceID"
+      >
+        {{ ilce.ilceName }}
+      </option>
+    </select>
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+        ilceid == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+
+  <div class="col g-3 align-items-center">
+  <select
+    class="select-option"
+    #mySelect2
+    formControlName="mahalleID"
+  >
+    <option disabled>Mahalle seçiniz</option>
+    <option
+      class="option"
+      *ngFor="let mahalle of mahalleler"
+      [ngValue]=mahalle.mahalleID
+    >
+      {{ mahalle.mahalleName }}
+    </option>
+  </select>
+</div>
+<div
+      class="alert alert-warning"
+      *ngIf="
+      tasinmazAddForm.get('mahalleID').Value == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+<div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('mahalleID').hasError('required') &&
+      tasinmazAddForm.get('mahalleID').dirty
+    "
+  >
+    Mahalle alanı zorunludur
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Ada</span>
+    <input
+      formControlName="ada"
+      type="number"
+      class="form-control"
+      placeholder="Ada"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('ada').hasError('required') &&
+      tasinmazAddForm.get('ada').dirty
+    "
+  >
+    Ada alanı zorunludur
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+        tasinmazAddForm.get('ada').Value == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('ada').hasError('min') 
+    "
+  >
+    Ada alanı pozitif bir değer olmalı
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Parsel</span>
+    <input
+      formControlName="parsel"
+      type="number"
+      class="form-control"
+      placeholder="Parsel"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('parsel').hasError('required') &&
+      tasinmazAddForm.get('parsel').dirty
+    "
+  >
+    Parsel alanı zorunludur
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+        tasinmazAddForm.get('parsel').Value == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('parsel').hasError('min')
+    "
+  >
+    Parsel alanı pozitif bir değer olmalıdır
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Nitelik</span>
+    <input
+      formControlName="nitelik"
+      type="text"
+      class="form-control"
+      placeholder="Nitelik"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+        tasinmazAddForm.get('nitelik').Value == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('nitelik').hasError('required') &&
+      tasinmazAddForm.get('nitelik').dirty
+    "
+  >
+    Nitelik alanı zorunludur
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Adres</span>
+    <input
+      formControlName="adres"
+      type="text"
+      class="form-control"
+      placeholder="Adres"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+        tasinmazAddForm.get('adres').Value == null && pressed;
+      "
+    >
+      {{alert}}
+    </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      tasinmazAddForm.get('adres').hasError('required') &&
+      tasinmazAddForm.get('adres').dirty
+    "
+  >
+    Adres alanı zorunludur
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+  >
+    Ekle
+  </button>
+</form>
+
+<!------------------------------------------------------------------------------------------->

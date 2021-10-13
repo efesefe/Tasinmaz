@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="isEntered">
+          <a routerLink = "tasinmaz" class="nav-link active" aria-current="page" >Taşınmaz</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link active" routerLink = "kullanicilar" aria-current="page">Kullanıcılar</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link active" routerLink = "log" aria-current="page">Loglar</a>
+        </li>
+        <li class="nav-item" *ngIf="!isEntered">
+          <a class="nav-link active" routerLink = "login" aria-current="page">Giriş</a>
+        </li>
+        <li *ngIf="isEntered" class="nav-item" >
+          <a class="nav-link active" (click) = "logout()" type="submit" aria-current="page">Çıkış</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

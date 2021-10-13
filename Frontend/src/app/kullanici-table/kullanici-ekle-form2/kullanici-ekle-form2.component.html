@@ -1,0 +1,157 @@
+<form [formGroup]="kullaniciAddForm" (ngSubmit)="add()" class="form-group">
+  <div class="col g-3 align-items-center">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">İsim</span>
+      <input
+        formControlName="isim"
+        type="text"
+        class="form-control"
+        placeholder="İsim"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('isim').hasError('required') &&
+        kullaniciAddForm.get('isim').dirty
+      "
+    >
+      İsim alanı zorunludur
+    </div>
+    <div
+      class="alert alert-warning"
+      *ngIf="
+        kullaniciAddForm.get('isim').Value == null && pressed;
+      "
+    >
+      {{alerts}}
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Soyisim</span>
+      <input
+        formControlName="soyisim"
+        type="text"
+        class="form-control"
+        placeholder="Soyisim"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('soyisim').hasError('required') &&
+        kullaniciAddForm.get('soyisim').dirty
+      "
+    >
+      Soyisim alanı zorunludur
+    </div>
+    <div
+      class="alert alert-warning"
+      *ngIf="
+        kullaniciAddForm.get('isim').Value == null && pressed;
+      "
+    >
+      {{alerts}}
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">@</span>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        placeholder="example@hotmail.com"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('email').hasError('required') &&
+        kullaniciAddForm.get('email').dirty
+      "
+    >
+      Email alanı zorunludur
+    </div>
+    <div
+      class="alert alert-warning"
+      *ngIf="
+        kullaniciAddForm.get('email').Value == null && pressed;
+      "
+    >
+      {{alerts}}
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('email').hasError('email') 
+      "
+    >
+      Email formatı uygun değil
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Şifre</span>
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        placeholder="Şifre"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('password').hasError('required') &&
+        kullaniciAddForm.get('password').dirty
+      "
+    >
+      Şifre alanı zorunludur
+    </div>
+    <div
+      class="alert alert-warning"
+      *ngIf="
+        kullaniciAddForm.get('password').Value == null && pressed;
+      "
+    >
+      {{alerts}}
+    </div>
+    <div class="alert alert-warning"
+      *ngIf="kullaniciAddForm.get('password').hasError('pattern')"
+    >Password en az 8 karakter, 1 harf ve 1 rakam içermelidir</div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect01">Rol</label>
+      <select
+        class="form-select"
+        id="inputGroupSelect01"
+        formControlName="role"
+      >
+        <option [ngValue]="true">Kullanıcı</option>
+        <option [ngValue]="false">Yönetici</option>
+      </select>
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('role').hasError('required') &&
+        kullaniciAddForm.get('role').dirty
+      "
+    >
+      Rol alanı zorunludur
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    
+  >
+    Ekle
+  </button>
+</form>

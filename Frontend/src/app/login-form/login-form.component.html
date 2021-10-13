@@ -1,0 +1,80 @@
+<h2>{{title}}</h2>
+<form [formGroup]="kullaniciAddForm" (ngSubmit)="login()" class="form-group">
+  <div class="col g-3 align-items-center">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Email</span>
+      <input
+        formControlName="userName"
+        type="text"
+        class="form-control"
+        placeholder="E-mail"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('userName').hasError('required') &&
+        kullaniciAddForm.get('userName').dirty
+      "
+    >
+      Email alanı zorunludur
+    </div>
+    <div
+      class="alert alert-warning"
+      *ngIf="
+        kullaniciAddForm.get('userName').hasError('email') &&
+        kullaniciAddForm.get('userName').dirty
+      "
+    >
+      Email formatı uygun değil
+    </div>
+    <div
+      class="alert alert-warning"
+      *ngIf="
+      kullaniciAddForm.get('password').Value == null && pressed;
+      "
+    >
+      {{alerts}}
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Password</span>
+      <input
+      pattern=""
+        formControlName="password"
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        kullaniciAddForm.get('password').hasError('required') &&
+        kullaniciAddForm.get('password').dirty
+      "
+    >
+      Password alanı zorunludur
+    </div>
+    <div class="alert alert-warning"
+      *ngIf="kullaniciAddForm.get('password').hasError('pattern')"
+    >Password en az 8 karakter, 1 özel karakter, 1 harf ve 1 rakam içermelidir</div>
+  </div>
+  <div
+      class="alert alert-warning"
+      *ngIf="
+      kullaniciAddForm.get('password').Value == null && pressed;
+      "
+    >
+      {{alerts}}
+    </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+  >
+    Giriş
+  </button>
+</form>
